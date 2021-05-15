@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                         fontSize: 20.0,
                         fontWeight: FontWeight.w600
                     )),
-                    subtitle: Text(item["codigo_id"], style: TextStyle(
+                    subtitle: Text(item["oferta_type"], style: TextStyle(
                         fontSize: 16.0
                     ),),
                   ),
