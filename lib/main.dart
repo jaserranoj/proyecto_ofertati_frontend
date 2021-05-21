@@ -1,6 +1,7 @@
-import 'dart:js';
+
 
 import 'package:flutter/material.dart';
+
 
 import 'app/inicio.dart';
 
@@ -11,6 +12,9 @@ void main() async {
     // ],
     theme: ThemeData(primaryColor: Colors.red),
     home: MyApp(),
+      routes: <String, WidgetBuilder>{
+        "/Perfil": (BuildContext context) => new Inicio()
+      }
   ));
 }
 
@@ -18,12 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: cuerpo(),
+      body: cuerpo(context),
     );
   }
 }
 
-Widget cuerpo() {
+Widget cuerpo(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       image: DecorationImage(
@@ -54,7 +58,7 @@ Widget cuerpo() {
         SizedBox(
           height: 10,
         ),
-        botonLogin(),
+        botonLogin(context),
       ],
     )),
   );
@@ -106,14 +110,13 @@ Widget imagenLogin() {
       ));
 }
 
-Widget botonLogin() {
+Widget botonLogin(BuildContext context) {
   final ButtonStyle style =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 50));
   return ElevatedButton(
     style: style,
     child: Text('Login'),
-    onPressed: () {
-      // _showPageInicio(context);
+    onPressed: () {Navigator.of(context).pushNamed("/Perfil");
     },
   );
 }

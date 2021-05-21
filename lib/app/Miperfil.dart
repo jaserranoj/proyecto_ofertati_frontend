@@ -4,9 +4,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Miperfil extends StatelessWidget {
+  final String usuario;
+  Miperfil({this.usuario});
+
   Future<List> getRol(String query) async {
     http.Response response = await http.get(
-        Uri.encodeFull("http://192.168.1.9:8000/ingenieros/?search=$query"));
+        Uri.encodeFull("http://localhost:8000/ingenieros/?search=$query"));
     return json.decode(response.body);
   }
 
@@ -14,7 +17,7 @@ class Miperfil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: getRol("ingelkinmh@gmail.com"),
+        future: getRol(usuario),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
             final List<dynamic> data = snapshot.data;
