@@ -16,10 +16,27 @@ class Salir extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               RaisedButton(
-                  color: Colors.blue[100],
+                  color: Colors.lightBlueAccent,
                   textColor: Colors.black,
                   padding: EdgeInsets.all(20),
-                  onPressed: () => exit(0),
+                  onPressed: () => showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Salir de la aplicacion'),
+                          content: const Text(
+                              'Esta seguro que quiere salir de la aplicacion?'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => exit(0),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        ),
+                      ),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

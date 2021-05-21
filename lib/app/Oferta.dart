@@ -45,7 +45,10 @@ class _OfertaState extends State<Oferta> {
                       Icons.business_center_sharp,
                       color: Colors.lightBlueAccent,
                     ),
-                    trailing: Icon(Icons.arrow_forward_ios),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.lightBlueAccent,
+                    ),
                     title: Text(item["nombre"],
                         style: TextStyle(
                             color: Colors.black,

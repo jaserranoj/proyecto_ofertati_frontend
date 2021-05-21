@@ -37,9 +37,7 @@ class Miperfil extends StatelessWidget {
                         image: AssetImage('assets/images/fondoperfil.JPG'),
                         fit: BoxFit.fill),
                   ),
-
                   padding: EdgeInsets.fromLTRB(18, 10, 0, 0),
-                  // padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -67,7 +65,7 @@ class Miperfil extends StatelessWidget {
                                   fit: BoxFit.fill,
                                 ),
                                 border: Border.all(
-                                  color: Colors.black,
+                                  color: Colors.lightBlueAccent,
                                   width: 3,
                                 ),
                                 borderRadius: BorderRadius.circular(12),

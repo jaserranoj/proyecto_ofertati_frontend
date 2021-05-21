@@ -121,13 +121,6 @@ Widget botonLogin(BuildContext context) {
   );
 }
 
-void _showPageInicio(BuildContext context) {
-  final route = MaterialPageRoute(builder: (BuildContext context) {
-    return Inicio(name: 'ingelkinmh@gmail.com');
-  });
-  Navigator.of(context).push(route);
-}
-
 Widget login() {
   return Container(
     height: 150,
