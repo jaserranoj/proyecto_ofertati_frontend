@@ -1,8 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.edu.unillanos.flutter_data">
+   
    <application
-        android:label="flutter_data"
+        android:usesCleartextTraffic="true"
+        android:label="flutter_data"        
         android:icon="@mipmap/ic_launcher">
+        <!--Se agrego esta linea android:usesCleartextTraffic="true" para que acepte las conexiones por medio de http y no https -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

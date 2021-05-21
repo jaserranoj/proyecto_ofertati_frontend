@@ -1,190 +1,143 @@
-import 'package:flutter/material.dart';
-import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'dart:js';
 
-import 'app/Miperfil.dart';
-import 'app/Oferta.dart';
-import 'app/Salir.dart';
+import 'package:flutter/material.dart';
+
+import 'app/inicio.dart';
 
 void main() async {
-
-  runApp(
-      MaterialApp(
-        theme: ThemeData(
-            primaryColor: Colors.red
-        ),
-        home: Scaffold(
-          body: MyApp(),
-
-        ),
-      )
-  );
+  runApp(MaterialApp(
+    //routes: [
+    //  '/': (context),
+    // ],
+    theme: ThemeData(primaryColor: Colors.red),
+    home: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.article_sharp), text: "Ofertas",),
-                Tab(icon: Icon(Icons.account_circle_rounded), text: "Mi Perfil"),
-                Tab(icon: Icon(Icons.exit_to_app), text: "Salir")
-              ],
-            ),
-            title: Text('Ofertas TI'),
-          ),
-          body: TabBarView(
-            children: [
-              Oferta(),
-              Miperfil(),
-              Salir(),
-            ],
-          ),
+    return Scaffold(
+      body: cuerpo(),
+    );
+  }
+}
+
+Widget cuerpo() {
+  return Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage(
+          'assets/images/fondoperfil.JPG',
         ),
+        fit: BoxFit.cover,
       ),
-    );
-  }
+    ),
+    child: Center(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        login(),
+        //imagenLogin(),
+        SizedBox(
+          height: 10,
+        ),
+        nombre(),
+        SizedBox(
+          height: 10,
+        ),
+        campoUsuario(),
+        SizedBox(
+          height: 10,
+        ),
+        campoPassword(),
+        SizedBox(
+          height: 10,
+        ),
+        botonLogin(),
+      ],
+    )),
+  );
 }
 
-class Perfil extends StatelessWidget {
-
-  Future<List> getRol(String query) async {
-    http.Response response = await http.get(Uri.encodeFull("http://localhost:8000/ingenieros/?search=$query"));
-    return json.decode(response.body);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
-        future: getRol("1"),
-        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot){
-          if(snapshot.hasData){
-            final List<dynamic> data = snapshot.data;
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index){
-                final item = data[index];
-                return Container(
-                  padding: EdgeInsets.fromLTRB(18, 10, 0, 0),
-                  // padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                  child: ListTile(
-                    title: Text(item["nombres"], style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w600
-                    )),
-                    subtitle: Text(item["user_type"], style: TextStyle(
-                        fontSize: 16.0
-                    ),),
-                  ),
-                );
-              },
-
-            );
-          }else{
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-    );
-  }
+Widget nombre() {
+  return Text(
+    'Sign in',
+    style: TextStyle(
+        color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold),
+  );
 }
 
-
-class Ofertas extends StatelessWidget {
-
-  Future<List> getPosts() async {
-    http.Response response = await http.get(Uri.encodeFull("http://localhost:8000/ofertas/"));
-    return json.decode(response.body);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
-        future: getPosts(),
-        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot){
-          if(snapshot.hasData){
-            final List<dynamic> data = snapshot.data;
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index){
-                final item = data[index];
-                return Container(
-                  padding: EdgeInsets.fromLTRB(18, 10, 0, 0),
-                  // padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                  child: ListTile(
-                    title: Text(item["nombre"], style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w600
-                    )),
-                    subtitle: Text(item["oferta_type"], style: TextStyle(
-                        fontSize: 16.0
-                    ),),
-                  ),
-                );
-              },
-
-            );
-          }else{
-            return Center(child: CircularProgressIndicator());
-          }
-        },
+Widget campoUsuario() {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+    child: TextField(
+      decoration: InputDecoration(
+        hintText: 'user',
+        fillColor: Colors.white,
+        filled: true,
       ),
-    );
-  }
+    ),
+  );
 }
 
-
-class Detalle extends StatelessWidget {
-
-  Future<List> getDetalle(String query) async {
-    http.Response response = await http.get(Uri.encodeFull("http://localhost:8000/ofertas/?search=$query"));
-    return json.decode(response.body);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
-        future: getDetalle("1"),
-        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot){
-          if(snapshot.hasData){
-            final List<dynamic> data = snapshot.data;
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index){
-                final item = data[index];
-                return Container(
-                  padding: EdgeInsets.fromLTRB(18, 10, 0, 0),
-                  // padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                  child: ListTile(
-                    title: Text(item["nombre"], style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w600
-                    )),
-                    subtitle: Text(item["descripcion"], style: TextStyle(
-                        fontSize: 16.0
-                    ),),
-                  ),
-                );
-              },
-
-            );
-          }else{
-            return Center(child: CircularProgressIndicator());
-          }
-        },
+Widget campoPassword() {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+    child: TextField(
+      obscureText: true,
+      decoration: InputDecoration(
+        hintText: 'Password',
+        fillColor: Colors.white,
+        filled: true,
       ),
-    );
-  }
+    ),
+  );
+}
+
+Widget imagenLogin() {
+  return Container(
+      width: 150,
+      height: 150,
+      child: SizedBox(
+        width: 150,
+        height: 150,
+        child: Icon(Icons.person),
+      ));
+}
+
+Widget botonLogin() {
+  final ButtonStyle style =
+      ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 50));
+  return ElevatedButton(
+    style: style,
+    child: Text('Login'),
+    onPressed: () {
+      // _showPageInicio(context);
+    },
+  );
+}
+
+void _showPageInicio(BuildContext context) {
+  final route = MaterialPageRoute(builder: (BuildContext context) {
+    return Inicio(name: 'hola,');
+  });
+  Navigator.of(context).push(route);
+}
+
+Widget login() {
+  return Container(
+    height: 150,
+    width: 150,
+    decoration: BoxDecoration(
+      image: const DecorationImage(
+          image: AssetImage('assets/images/login1.png'), fit: BoxFit.fill),
+      border: Border.all(
+        color: Colors.black,
+        width: 8,
+      ),
+      borderRadius: BorderRadius.circular(12),
+    ),
+    padding: EdgeInsets.all(20),
+  );
 }
