@@ -9,7 +9,7 @@ class Miperfil extends StatelessWidget {
 
   Future<List> getRol(String query) async {
     http.Response response = await http.get(
-        Uri.encodeFull("http://localhost:8000/ingenieros/?search=$query"));
+        Uri.encodeFull("http://192.168.1.9:8000/ingenieros/?search=$query"));
     return json.decode(response.body);
   }
 
@@ -17,7 +17,7 @@ class Miperfil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: getRol(usuario),
+        future: getRol('ingelkinmh@gmail.com'),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
             final List<dynamic> data = snapshot.data;
@@ -114,6 +114,29 @@ class Miperfil extends StatelessWidget {
                                   color: Theme.of(context).primaryColor,
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.w600),
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              margin: EdgeInsets.all(15),
+                              elevation: 10,
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(15, 10, 25, 0),
+                                    title: Text('Perfil'),
+                                    subtitle: Text(
+                                      item["perfil"],
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    leading: Icon(Icons.assignment_ind_rounded),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

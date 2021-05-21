@@ -11,7 +11,7 @@ class Oferta extends StatefulWidget {
 class _OfertaState extends State<Oferta> {
   Future<List> getPosts() async {
     http.Response response =
-        await http.get(Uri.encodeFull("http://localhost:8000/ofertas/"));
+        await http.get(Uri.encodeFull("http://192.168.1.9:8000/ofertas/"));
     return json.decode(response.body);
   }
 

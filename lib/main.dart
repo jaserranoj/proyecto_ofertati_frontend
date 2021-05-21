@@ -1,21 +1,16 @@
-
-
 import 'package:flutter/material.dart';
-
 
 import 'app/inicio.dart';
 
 void main() async {
-  runApp(MaterialApp(
-    //routes: [
-    //  '/': (context),
-    // ],
-    theme: ThemeData(primaryColor: Colors.red),
-    home: MyApp(),
-      routes: <String, WidgetBuilder>{
-        "/Perfil": (BuildContext context) => new Inicio()
-      }
-  ));
+  runApp(
+    MaterialApp(
+        theme: ThemeData(primaryColor: Colors.red),
+        home: MyApp(),
+        routes: <String, WidgetBuilder>{
+          "/Perfil": (BuildContext context) => new Inicio()
+        }),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -73,9 +68,11 @@ Widget nombre() {
 }
 
 Widget campoUsuario() {
+  TextEditingController _usuario = TextEditingController(text: "");
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
     child: TextField(
+      controller: _usuario,
       decoration: InputDecoration(
         hintText: 'user',
         fillColor: Colors.white,
@@ -116,14 +113,15 @@ Widget botonLogin(BuildContext context) {
   return ElevatedButton(
     style: style,
     child: Text('Login'),
-    onPressed: () {Navigator.of(context).pushNamed("/Perfil");
+    onPressed: () {
+      Navigator.of(context).pushNamed("/Perfil");
     },
   );
 }
 
 void _showPageInicio(BuildContext context) {
   final route = MaterialPageRoute(builder: (BuildContext context) {
-    return Inicio(name: 'hola,');
+    return Inicio(name: 'ingelkinmh@gmail.com');
   });
   Navigator.of(context).push(route);
 }

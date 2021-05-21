@@ -32,7 +32,7 @@ class Inicio extends StatelessWidget {
           body: TabBarView(
             children: [
               Oferta(),
-              Miperfil(usuario: "1"),
+              Miperfil(usuario: name),
               Salir(),
             ],
           ),

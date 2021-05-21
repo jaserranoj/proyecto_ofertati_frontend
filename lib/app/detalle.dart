@@ -19,7 +19,9 @@ void main() async {
 class Detalle extends StatelessWidget {
   Future<List> getDetalle(String query) async {
     http.Response response = await http
-        .get(Uri.encodeFull("http://localhost:8000/ofertas/?search=$query"));
+        //.get(Uri.encodeFull("http://localhost:8000/ofertas/?search=$query"));
+        .get(Uri.encodeFull("http://192.168.1.9:8000/ofertas/?search=$query"));
+
     //se debe cambiar la ip de localhots por la ip del equipo donde esta corriendo el proyecto
     //De esto http://localhost:8000/ofertas/?search=$query a esto http://192.168.1.9:8000/ofertas/?search=$query
     return json.decode(response.body);
