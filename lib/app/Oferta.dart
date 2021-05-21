@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import 'detalle.dart';
+
 class Oferta extends StatefulWidget {
   @override
   _OfertaState createState() => _OfertaState();
@@ -38,6 +40,7 @@ class _OfertaState extends State<Oferta> {
                   margin: EdgeInsets.all(5),
                   elevation: 10,
                   child: ListTile(
+                    onTap: () {},
                     leading: Icon(
                       Icons.business_center_sharp,
                       color: Colors.lightBlueAccent,

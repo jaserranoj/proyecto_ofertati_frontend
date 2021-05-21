@@ -74,6 +74,7 @@ Widget campoUsuario() {
     child: TextField(
       controller: _usuario,
       decoration: InputDecoration(
+        icon: Icon(Icons.account_circle),
         hintText: 'user',
         fillColor: Colors.white,
         filled: true,
@@ -88,6 +89,7 @@ Widget campoPassword() {
     child: TextField(
       obscureText: true,
       decoration: InputDecoration(
+        icon: Icon(Icons.lock),
         hintText: 'Password',
         fillColor: Colors.white,
         filled: true,
