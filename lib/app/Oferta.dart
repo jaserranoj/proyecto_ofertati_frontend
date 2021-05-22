@@ -13,7 +13,7 @@ class Oferta extends StatefulWidget {
 class _OfertaState extends State<Oferta> {
   Future<List> getPosts() async {
     http.Response response =
-        await http.get(Uri.encodeFull("http://192.168.1.9:8000/ofertas/"));
+        await http.get(Uri.encodeFull("http://localhost:8000/ofertas/"));
     return json.decode(response.body);
   }
 
@@ -40,7 +40,10 @@ class _OfertaState extends State<Oferta> {
                   margin: EdgeInsets.all(5),
                   elevation: 10,
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Detalle(oferta: "1")));},
                     leading: Icon(
                       Icons.business_center_sharp,
                       color: Colors.lightBlueAccent,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'app/inicio.dart';
-
+import 'app/detalle.dart';
 void main() async {
   runApp(
     MaterialApp(

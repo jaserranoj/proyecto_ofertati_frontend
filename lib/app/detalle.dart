@@ -17,10 +17,13 @@ void main() async {
 }
 
 class Detalle extends StatelessWidget {
+  var oferta;
+
+  Detalle({this.oferta});
   Future<List> getDetalle(String query) async {
     http.Response response = await http
-        //.get(Uri.encodeFull("http://localhost:8000/ofertas/?search=$query"));
-        .get(Uri.encodeFull("http://192.168.1.9:8000/ofertas/?search=$query"));
+        .get(Uri.encodeFull("http://localhost:8000/ofertas/?search=$query"));
+        //.get(Uri.encodeFull("http://192.168.1.9:8000/ofertas/?search=$query"));
 
     //se debe cambiar la ip de localhots por la ip del equipo donde esta corriendo el proyecto
     //De esto http://localhost:8000/ofertas/?search=$query a esto http://192.168.1.9:8000/ofertas/?search=$query
@@ -31,7 +34,7 @@ class Detalle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: getDetalle("1"),
+        future: getDetalle(this.oferta),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
             final List<dynamic> data = snapshot.data;
@@ -42,17 +45,6 @@ class Detalle extends StatelessWidget {
                 return Container(
                   padding: EdgeInsets.fromLTRB(18, 10, 0, 0),
                   // padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                  child: ListTile(
-                    title: Text(item["nombre"],
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w600)),
-                    subtitle: Text(
-                      item["descripcion"],
-                      style: TextStyle(fontSize: 16.0),
-                    ),
-                  ),
                 );
               },
             );
