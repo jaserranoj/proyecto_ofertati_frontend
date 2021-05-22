@@ -17,7 +17,7 @@ class Miperfil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: getRol('1'),
+        future: getRol(this.usuario),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
             final List<dynamic> data = snapshot.data;

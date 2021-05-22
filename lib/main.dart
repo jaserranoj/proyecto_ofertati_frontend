@@ -8,7 +8,7 @@ void main() async {
         theme: ThemeData(primaryColor: Colors.red),
         home: MyApp(),
         routes: <String, WidgetBuilder>{
-          "/Perfil": (BuildContext context) => new Inicio()
+          "/Perfil": (BuildContext context) => new Inicio(user:"1")
         }),
   );
 }

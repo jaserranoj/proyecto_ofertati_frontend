@@ -5,8 +5,8 @@ import 'Oferta.dart';
 import 'Salir.dart';
 
 class Inicio extends StatelessWidget {
-  const Inicio({Key key, this.name}) : super(key: key);
-  final String name;
+  var user;
+  Inicio({this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class Inicio extends StatelessWidget {
           body: TabBarView(
             children: [
               Oferta(),
-              Miperfil(usuario: name),
+              Miperfil(usuario: this.user),
               Salir(),
             ],
           ),
