@@ -43,7 +43,7 @@ class _OfertaState extends State<Oferta> {
                     onTap: () {Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Detalle(oferta: "1")));},
+                            builder: (context) => Detalle(oferta: item["codigo_id"])));},
                     leading: Icon(
                       Icons.business_center_sharp,
                       color: Colors.lightBlueAccent,

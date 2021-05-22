@@ -44,6 +44,27 @@ class Detalle extends StatelessWidget {
                 final item = data[index];
                 return Container(
                   padding: EdgeInsets.fromLTRB(18, 10, 0, 0),
+                  child: Card(
+                  child: Column(
+                  children: [
+                  Text(item["nombre"],
+                  style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600)),
+                  Text(
+                  item["oferta_type"],
+                  style:
+                  TextStyle(fontSize: 16.0, color: Colors.blueGrey),
+                  ),
+                  Text(item["descripcion"],
+                  style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600)),
+                  ],
+                )
+                  ),
                   // padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                 );
               },
