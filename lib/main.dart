@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'app/inicio.dart';
-import 'app/detalle.dart';
+
 void main() async {
   runApp(
     MaterialApp(
         theme: ThemeData(primaryColor: Colors.red),
         home: MyApp(),
         routes: <String, WidgetBuilder>{
-          "/Perfil": (BuildContext context) => new Inicio(user:"1")
+          "/Perfil": (BuildContext context) => new Inicio(user: "1")
         }),
   );
 }

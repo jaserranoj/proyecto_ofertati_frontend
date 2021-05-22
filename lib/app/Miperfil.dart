@@ -9,7 +9,8 @@ class Miperfil extends StatelessWidget {
 
   Future<List> getRol(String query) async {
     http.Response response = await http.get(
-        Uri.encodeFull("http://localhost:8000/ingenieros/?search=$query"));
+        //Uri.encodeFull("http://localhost:8000/ingenieros/?search=$query"));
+        Uri.encodeFull("http://192.168.1.9:8000/ingenieros/?search=$query"));
     return json.decode(response.body);
   }
 
@@ -17,7 +18,7 @@ class Miperfil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: getRol(this.usuario),
+        future: getRol('1'),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
             final List<dynamic> data = snapshot.data;
